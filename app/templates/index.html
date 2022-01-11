@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Grocery List
+{% endblock title %}
+
+{% block header %}
+{% endblock header %}   
+
+{% block content %}
+<h2>Grocery List</h2>
+<div class="row">
+</div>
+
+<div>
+    <h2>Weekdays</h2>
+    <form action="" method="POST">
+        <table class="week">
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Date</th>
+                    <th>Dish</th>
+                </tr>
+            </thead>
+            <tbody id="weekdayTable">
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <input type="date" class="date" name="first_date" id="date_1" 
+                        value="{{today_str}}" pattern="\d{4}-\d{2}-\d{2}">
+                    </td>
+                    <td>
+                        <input type="text" class="dish" name="first-dish" id="dish_1">
+                    </td>
+                </tr>
+                <td class="optionsTable" colspan="3">
+                    <p class="btn-floating" id="newRow"><i class="material-icons">add</i></p>
+                    <p class="btn-floating red" id="removeRow"><i class="material-icons">remove</i></p>
+                    <span width="10vw"></span>
+                    <button class="btn-floating blue" id="saveList" type="submit"><i class="material-icons">save</i></button>
+                </td>
+            </tbody>
+        </table>
+    </form>
+</div>
+
+{% endblock content %}
+{% block js %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/table_counter.js') }}"></script>
+{% endblock js %}
