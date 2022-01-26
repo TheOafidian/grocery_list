@@ -1,53 +1,33 @@
 {% extends "base.html" %}
 
-
 {% block title %}
-    Grocery List
-{% endblock title %}
-
-{% block header %}
-{% endblock header %}   
+    {{title}}
+{% endblock title%}
 
 {% block content %}
-<h2>Grocery List</h2>
-<div class="row">
-</div>
+<h1>Hi, {{current_user.username }}!</h1>
+{% if form %}
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.post.label }}
+        {{ form.post(cols=32, rows=4) }} <br>
+        {% for error in form.post.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p> {{ form.submit(class_='btn') }} </p>
+</form>
+{% endif %}
+{% for post in posts %}
+    {% include '_post.html' %}
+{% endfor %}
 
-<div>
-    <h2>Weekdays</h2>
-    <form action="" method="POST">
-        <table class="week">
-            <thead>
-                <tr>
-                    <th>Day</th>
-                    <th>Date</th>
-                    <th>Dish</th>
-                </tr>
-            </thead>
-            <tbody id="weekdayTable">
-                <tr>
-                    <td>
-                    </td>
-                    <td>
-                        <input type="date" class="date" name="first_date" id="date_1" 
-                        value="{{today_str}}" pattern="\d{4}-\d{2}-\d{2}">
-                    </td>
-                    <td>
-                        <input type="text" class="dish" name="first-dish" id="dish_1">
-                    </td>
-                </tr>
-                <td class="optionsTable" colspan="3">
-                    <p class="btn-floating" id="newRow"><i class="material-icons">add</i></p>
-                    <p class="btn-floating red" id="removeRow"><i class="material-icons">remove</i></p>
-                    <span width="10vw"></span>
-                    <button class="btn-floating blue" id="saveList" type="submit"><i class="material-icons">save</i></button>
-                </td>
-            </tbody>
-        </table>
-    </form>
-</div>
+{% if prev_url %}
+    <a href="{{ prev_url }}">Newer Posts</a>
+{% endif %}
 
-{% endblock content %}
-{% block js %}
-<script type="text/javascript" src="{{ url_for('static', filename='js/table_counter.js') }}"></script>
-{% endblock js %}
+{% if next_url %}
+    <a href="{{ next_url }}">Older Posts</a>
+{% endif %}
+{% endblock content%}

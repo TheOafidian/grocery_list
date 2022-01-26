@@ -38,7 +38,7 @@ if not app.debug:
     file_handler = RotatingFileHandler('logs/grocery.log', maxBytes=10240,
                                         backupCount=10)
     file_handler.setFormatter(logging.Formatter(
-        '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineo)d]'
+        '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(line)d]'
     ))
     file_handler.setLevel(logging.INFO)
     app.logger.addHandler(file_handler)
