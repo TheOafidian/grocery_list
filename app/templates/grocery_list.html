@@ -5,10 +5,7 @@
     Grocery List
 {% endblock title %}
 
-{% block header %}
-{% endblock header %}   
-
-{% block content %}
+{% block app_content %}
 <h2>Grocery List</h2>
 <div class="row">
 </div>
@@ -47,7 +44,7 @@
     </form>
 </div>
 
-{% endblock content %}
+{% endblock app_content %}
 {% block js %}
 <script type="text/javascript" src="{{ url_for('static', filename='js/table_counter.js') }}"></script>
 {% endblock js %}

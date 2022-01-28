@@ -1,6 +1,8 @@
 <nav class="cyan">
-    <div class="nav-wrapper container">
+    <div class="nav-wrapper">
+     <div class='container'>
       <a href="{{ url_for('index')}}" class="brand-logo">GroceryApp</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         {% if current_user.is_anonymous %}
         <li><a href="{{ url_for('login') }}">Login</a></li>
@@ -12,5 +14,18 @@
         <li><a href="{{ url_for('logout') }}">Logout</a></li>
         {% endif %}
       </ul>
-    </div>
+    </div> 
+   </div>
   </nav>
+
+<ul class="sidenav" id="mobile-demo">
+  {% if current_user.is_anonymous %}
+  <li><a href="{{ url_for('login') }}">Login</a></li>
+  <li><a href="{{ url_for('register') }}">Register</a></li>
+  {% else %}
+  <li><a href="{{ url_for('explore') }}">Explore</a></li>
+  <li><a href="{{ url_for('user', username=current_user.username) }}">
+    {{ current_user.username }}</a></li>
+  <li><a href="{{ url_for('logout') }}">Logout</a></li>
+  {% endif %}
+</ul>

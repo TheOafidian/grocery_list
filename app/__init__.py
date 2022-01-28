@@ -7,8 +7,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_mail import Mail
+from flask_material import Material
 
 app = Flask(__name__)
+material = Material(app)
 app.config.from_object(Config)
 
 login = LoginManager(app)

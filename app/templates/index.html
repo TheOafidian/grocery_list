@@ -4,7 +4,7 @@
     {{title}}
 {% endblock title%}
 
-{% block content %}
+{% block app_content %}
 <h1>Hi, {{current_user.username }}!</h1>
 {% if form %}
 <form action="" method="post">
@@ -19,9 +19,11 @@
     <p> {{ form.submit(class_='btn') }} </p>
 </form>
 {% endif %}
+<ul class="collection">
 {% for post in posts %}
     {% include '_post.html' %}
 {% endfor %}
+</ul>
 
 {% if prev_url %}
     <a href="{{ prev_url }}">Newer Posts</a>
@@ -30,4 +32,4 @@
 {% if next_url %}
     <a href="{{ next_url }}">Older Posts</a>
 {% endif %}
-{% endblock content%}
+{% endblock app_content%}

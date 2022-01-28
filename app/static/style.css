@@ -180,3 +180,17 @@ input.dish {
     bottom: 25%; left: 75%;
     transform: translate(-75%, 0%) rotate(25deg);
   }
+
+  .msg {
+    width:100%;
+    border: 1px solid;
+    padding:10px;
+    margin: 20px;
+    color: grey;
+  }
+
+  .msg-info{
+    border-color: #0288d1;
+    background-color: #29b6f6;
+    color: white;
+  }

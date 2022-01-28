@@ -4,20 +4,18 @@
     User Profile - {{ user.username }}
 {% endblock title %}
 
-{% block content %}
-    <table>
-        <tr valign="top">
-            <td><img src="{{ user.avatar(128) }}" alt="profile picture"></td>
-            <td>
-                <h1>{{ user.username }}</h1>
-                {% if user.about_me %} <p>{{ user.about_me }}</p> {% endif %}
-                {% if user.last_seen %} <p> Last seen on: {{user.last_seen }}</p>{% endif %}
-                <p>{{ user.followers.count() }} followers, {{ user.followed.count() }} following.</p>
-            </td>
-            <td>
+{% block app_content %}
+    <div class="row">
+        <div class="col s5 push-s7">
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="{{ user.avatar(128) }}" style="width: 128px; border-radius: 50%; padding-top: 5px; padding-left: 5px;">
+                </div>
+                <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">{{ user.username }}<i class="material-icons right">more_vert</i></span>
                 {% if user == current_user %}
                 <p><a href="{{ url_for('edit_profile') }}">Edit your profile</a></p>
-
+            
                 {% elif not current_user.is_following(user) %}
                 <form action="{{ url_for('follow', username=user.username) }}" method="post">
                     {{ form.hidden_tag() }}
@@ -29,14 +27,23 @@
                     {{ form.submit(value='Unfollow', class_='btn') }}
                 </form>
                 {% endif %}
-            </td>
-        </tr>
-    </table>
-    <hr>
-    {% for post in posts %}
-        {% include '_post.html' %}
-    {% endfor %}
-
+                {% if user.about_me %} <p>{{ user.about_me }}</p> {% endif %}
+                </div>
+                <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">{{ user.username }}<i class="material-icons right">close</i></span>
+                {% if user.last_seen %} <p> Last seen on: {{user.last_seen }}</p>{% endif %}
+                <p>{{ user.followers.count() }} followers, {{ user.followed.count() }} following.</p>
+                </div>
+            </div>        
+        </div>
+    </div>
+    <div class="row">
+        <ul class="collection">
+            {% for post in posts %}
+                {% include '_post.html' %}
+            {% endfor %}
+        </ul>
+    </div>  
     {% if prev_url %}
         <a href="{{ prev_url }}">Newer Posts</a>
     {% endif %}
@@ -44,4 +51,4 @@
     {% if next_url %}
         <a href="{{ next_url }}">Older Posts</a>
     {% endif %}
-{% endblock content %}
+{% endblock app_content %}

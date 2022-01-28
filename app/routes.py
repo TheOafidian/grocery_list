@@ -95,10 +95,10 @@ def edit_profile():
     form = EditProfileForm(current_user.username)
     if form.validate_on_submit():
         current_user.username = form.username.data
-        current_user.about_me = form.about_me
+        current_user.about_me = form.about_me.data
         db.session.commit()
         flash("Your changes have been saved.")
-        return redirect(url_for('eidt_profile'))
+        return redirect(url_for('edit_profile'))
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.about_me.data = current_user.about_me

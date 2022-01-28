@@ -4,7 +4,7 @@
     <h1>{% block title %}Login{% endblock %}</h1>
 {% endblock %}
 
-{% block content %}
+{% block app_content %}
     <form method="post" action="" novalidate>
         {{ form.hidden_tag() }}
         <p>
@@ -33,4 +33,4 @@
         Forgot your password?
         <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
     </p>
-{% endblock %}
+{% endblock app_content %}
