@@ -1,36 +1,37 @@
 {% extends "base.html" %}
-
-{% block header %}
-    <h1>{% block title %}Login{% endblock %}</h1>
-{% endblock %}
-
+<!-- Keep this formatting instead of quickform, as the Materialize checkbox won't work otherwise-->
 {% block app_content %}
-    <form method="post" action="" novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }} <br>
-            {{ form.username(size=32) }}
-            {% for error in form.username.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p> 
-        <p>
-            {{ form.password.label }} <br>
-            {{ form.password(size=32) }}
-            {% for error in form.password.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p> 
-        <label>
-            {{ form.remember_me() }} 
-            <span> {{form.remember_me.label}} </span>
-        </label>
-        </p>
-        <p>{{ form.submit(class_="btn") }}</p>
-    </form>
-    <p>
-        Forgot your password?
-        <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
-    </p>
+    <h1>Login</h1>
+    <div class="row">
+        <div class="col m4">
+            <form method="post" action="" novalidate>
+                {{ form.hidden_tag() }}
+                <p>
+                    {{ form.username.label }} <br>
+                    {{ form.username(size=32) }}
+                    {% for error in form.username.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p> 
+                <p>
+                    {{ form.password.label }} <br>
+                    {{ form.password(size=32) }}
+                    {% for error in form.password.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+                <p> 
+                <label>
+                    {{ form.remember_me() }} 
+                    <span> {{form.remember_me.label}} </span>
+                </label>
+                </p>
+                <p>{{ form.submit(class_="btn") }}</p>
+            </form>
+            <p>
+                Forgot your password?
+                <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
+            </p>
+        </div>
+    </div>
 {% endblock app_content %}
