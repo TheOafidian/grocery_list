@@ -86,7 +86,7 @@ def register():
         db.session.commit()
         flash(f"Thanks for registering, {form.username.data}")
         return redirect(url_for("login"))
-    return render_template("auth/register.html", form=form)
+    return render_template("_form.html", form=form, title="Register")
 
 
 @app.route("/user/<username>")
@@ -123,7 +123,7 @@ def edit_profile():
     elif request.method == "GET":
         form.username.data = current_user.username
         form.about_me.data = current_user.about_me
-    return render_template("edit_profile.html", form=form)
+    return render_template("_form.html", form=form, title="Edit Profile")
 
 
 @app.route("/follow/<username>", methods=["POST"])
@@ -186,7 +186,7 @@ def explore():
 
 @app.route("/reset_password_request", methods=["GET", "POST"])
 def reset_password_request():
-    if current_user.is_authenticated():
+    if current_user.is_authenticated:
         return redirect(url_for("index"))
     form = ResetPasswordRequestForm()
     if form.validate_on_submit():
@@ -196,7 +196,7 @@ def reset_password_request():
         flash("Check your email for the instructions to reset your password")
         return redirect(url_for("login"))
     return render_template(
-        "reset_password_request.html", title="Reset Password", form=form
+        "_form.html", title="Reset Password", form=form
     )
 
 
@@ -213,4 +213,4 @@ def reset_password(token):
         db.session.commit()
         flash("Your password has been reset")
         return redirect(url_for("login"))
-    return render_template("reset_password.html", form=form)
+    return render_template("_form.html", form=form, title="Reset Password")
