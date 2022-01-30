@@ -5,13 +5,13 @@
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         {% if current_user.is_anonymous %}
-        <li><a href="{{ url_for('login') }}">Login</a></li>
-        <li><a href="{{ url_for('register') }}">Register</a></li>
+        <li><a href="{{ url_for('login') }}">{{_('Login')}}</a></li>
+        <li><a href="{{ url_for('register') }}">{{_('Register')}}</a></li>
         {% else %}
-	      <li><a href="{{ url_for('explore') }}">Explore</a></li>
+	      <li><a href="{{ url_for('explore') }}">{{_('Explore')}}</a></li>
         <li><a href="{{ url_for('user', username=current_user.username) }}">
           {{ current_user.username }}</a></li>
-        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        <li><a href="{{ url_for('logout') }}">{{_('Logout')}}</a></li>
         {% endif %}
       </ul>
     </div> 
@@ -20,12 +20,12 @@
 
 <ul class="sidenav" id="mobile-demo">
   {% if current_user.is_anonymous %}
-  <li><a href="{{ url_for('login') }}">Login</a></li>
-  <li><a href="{{ url_for('register') }}">Register</a></li>
+  <li><a href="{{ url_for('login') }}">{{_('Login')}}</a></li>
+  <li><a href="{{ url_for('register') }}">{{_('Register')}}</a></li>
   {% else %}
-  <li><a href="{{ url_for('explore') }}">Explore</a></li>
+  <li><a href="{{ url_for('explore') }}">{{_('Explore')}}</a></li>
   <li><a href="{{ url_for('user', username=current_user.username) }}">
     {{ current_user.username }}</a></li>
-  <li><a href="{{ url_for('logout') }}">Logout</a></li>
+  <li><a href="{{ url_for('logout') }}">{{_('Logout')}}</a></li>
   {% endif %}
 </ul>

@@ -36,7 +36,9 @@
     </div>
     
     {% block scripts %}
-    {{ super() }}   
+    {{ super() }}
+    {{ moment.include_moment() }}
+    {{ moment.lang(g.locale) }}   
         <script src="{{url_for('static', filename='js/navbar.js')}}"></script>
     {% endblock scripts %}
 {% endblock content %}

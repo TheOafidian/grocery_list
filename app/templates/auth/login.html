@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 <!-- Keep this formatting instead of quickform, as the Materialize checkbox won't work otherwise-->
 {% block app_content %}
-    <h1>Login</h1>
+    <h1>{{_('Login')}}</h1>
     <div class="row">
         <div class="col m4">
             <form method="post" action="" novalidate>
@@ -29,7 +29,7 @@
                 <p>{{ form.submit(class_="btn") }}</p>
             </form>
             <p>
-                Forgot your password?
+                {{_('Forgot your password?')}}
                 <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
             </p>
         </div>

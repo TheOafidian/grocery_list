@@ -4,4 +4,5 @@
             {{ post.author.username }}
         </a></span>
         <p>{{ post.body }}</p>
+        <p style="color: gray;">{{moment(post.timestamp).fromNow()}}</p>
 </li>
